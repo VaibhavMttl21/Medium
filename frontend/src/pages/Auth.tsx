@@ -1,7 +1,7 @@
 import { Auth } from "../components/Auth"
 import { Quote } from "../components/Quote"
 
-export const Signup = ()=>
+export const Login = ()=>
     {
         return <div className="grid grid-cols-1 lg:grid-cols-2 ">
             <div>

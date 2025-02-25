@@ -4,18 +4,19 @@ import { SignupInput } from "@vaibhavmittal/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
-export const Auth = ({ type }: { type: "signup" | "signin" }) => {
+export const Auth = () => {
   const navigate = useNavigate();
   const [postInputs, setpostInputs] = useState<SignupInput>({
     name: "",
     email: "",
     password: "",
   });
-
+  const [SignupInput, setSignupInput] = useState<boolean>(false)
+  
   async function sendRequest() {
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
+        `${BACKEND_URL}/api/v1/user/${SignupInput ? "signup" : "signin"}`,
         postInputs
       );
       const jwt = response.data;
@@ -34,20 +35,23 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             <div className="mb-6">
               <div className="text-5xl font-bold mb-5">Create an Account</div>
               <div className="text-slate-500 ml-10 text-xl">
-                {type === "signin"
+                {SignupInput
                   ? "Don't have an Account?"
                   : "Already have an account?"}
-                <Link
+                {/* <Link
                   className="pl-3 underline"
-                  to={type === "signin" ? "/signup" : "/signin"}
+                  to={SignupInput ? "/signup" : "/signin"}
                 >
                   {type === "signin" ? "Sign up" : "Sign in"}
-                </Link>
+                </Link> */}
+                {
+                  SignupInput ? <button onClick={()=>setSignupInput(false)} className="pl-3 underline">Sign in</button> : <button onClick={()=>setSignupInput(true)} className="pl-3 underline">Sign up</button>
+                }
               </div>
             </div>
           </div>
           <div className="">
-            {type === "signup" ? (
+            {SignupInput ? (
               <LabelledInput
                 label="Name"
                 id="name"
@@ -81,7 +85,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
               type="button"
               className="mt-8 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-lg px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
             >
-              {type === "signup" ? "Sign up" : "Sign in"}
+              {SignupInput ? "Sign up" : "Sign in"}
             </button>
           </div>
         </div>
