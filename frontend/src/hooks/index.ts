@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 export interface Blog{
     "content": string,
     "title":string,
@@ -17,7 +16,7 @@ export const useBlog  = ({id}:{id:string})=>
   const [blog, setBlog] = useState<Blog>();
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/v1/blog/${id}`,
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`,
         {
             headers:
             {
@@ -41,7 +40,7 @@ export const useBlogs = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/v1/blog/bulk`,
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/bulk`,
         {
             headers:
             {

@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { SignupInput } from "@vaibhavmittal/medium-common";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 
 export const Auth = () => {
   const navigate = useNavigate();
@@ -15,10 +14,12 @@ export const Auth = () => {
   
   async function sendRequest() {
     try {
+      console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
       const response = await axios.post(
-        `${BACKEND_URL}/api/v1/user/${SignupInput ? "signup" : "signin"}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${SignupInput ? "signup" : "signin"}`,
         postInputs
       );
+      console.log("request here2")
       const jwt = response.data;
       localStorage.setItem("token", jwt);
       navigate("/blogs");
