@@ -5,7 +5,7 @@ export const Login = ()=>
     {
         return <div className="grid grid-cols-1 lg:grid-cols-2 ">
             <div>
-                <Auth type="signup" />
+                <Auth/>
             </div>
             <div className="hidden lg:block">
             <Quote/>
