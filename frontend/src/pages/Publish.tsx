@@ -36,6 +36,7 @@ export const Publish =()=>
                         {
                             headers:
                             {
+                                contentType:"application/json",
                                 Authorization:localStorage.getItem("token")
                             }
                         }

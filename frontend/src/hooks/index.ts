@@ -20,6 +20,7 @@ export const useBlog  = ({id}:{id:string})=>
         {
             headers:
             {
+              contentType:"application/json",
                 Authorization:localStorage.getItem("token")
             }
         }
@@ -44,6 +45,7 @@ export const useBlogs = () => {
         {
             headers:
             {
+              contentType:"application/json",
                 Authorization:localStorage.getItem("token")
             }
         }

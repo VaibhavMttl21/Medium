@@ -17,7 +17,12 @@ export const Auth = () => {
       console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${SignupInput ? "signup" : "signin"}`,
-        postInputs
+        postInputs,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       console.log("request here2")
       const jwt = response.data;
