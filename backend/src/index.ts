@@ -14,7 +14,15 @@ const app = new Hono<
     JWT_SECRET:string,
   }
 }>()
-app.use("/*",cors());
+app.use("/*", cors({
+  origin: ['*'],  // Consider restricting to specific origins in production
+  allowMethods: ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+  exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
+  credentials: true,
+  maxAge: 600
+}));
+
 app.route("api/v1/user",userRouter);
 app.route("api/v1/blog",blogRouter);
 
