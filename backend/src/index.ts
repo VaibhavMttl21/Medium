@@ -15,7 +15,7 @@ const app = new Hono<
   }
 }>()
 app.use("/*", cors({
-  origin: ['*'],  // Consider restricting to specific origins in production
+  origin: ['https://medium-rho-six.vercel.app'],  // Consider restricting to specific origins in production
   allowMethods: ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
