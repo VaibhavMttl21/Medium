@@ -20,7 +20,7 @@ export const useBlog  = ({id}:{id:string})=>
         {
             headers:
             {
-              contentType:"application/json",
+              "Content-Type":"application/json",
                 Authorization:localStorage.getItem("token")
             }
         }
